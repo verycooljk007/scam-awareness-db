@@ -1,0 +1,77 @@
+name: 🚨 Report a New Scam
+description: Submit details about a scam text, email, or message you received.
+title: "[Scam Name]: "
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🛑 STOP! Safety Check
+        Before submitting, please ensure you have:
+        1. **Redacted** your personal phone number and name from screenshots.
+        2. **Redacted** the scammer's phone number (unless it is a confirmed shortcode).
+        3. **Defanged** any URLs (change `https` to `hxxps` and `.` to `[.]`).
+
+  - type: dropdown
+    id: scam_type
+    attributes:
+      label: Scam Medium
+      description: How did you receive this scam?
+      options:
+        - SMS / Text Message
+        - Email
+        - WhatsApp / Telegram / Signal
+        - Social Media DM (Instagram, Twitter, etc.)
+        - Voice Call / Voicemail
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: hook
+    attributes:
+      label: The Hook (The "Story")
+      description: What is the scam claiming? (e.g., "Unpaid toll fee," "Package delivery failed," "Job offer").
+      placeholder: The message claims I have an unpaid toll fee of $4.55 and threatens a fine if I don't pay immediately.
+    validations:
+      required: true
+
+  - type: textarea
+    id: red_flags
+    attributes:
+      label: Red Flags
+      description: List the reasons why you know this is a scam.
+      placeholder: |
+        - The link is 'pay-toll-services-usa.com', not the official government site.
+        - Sent from a personal +1 (647) phone number.
+        - Poor grammar/spelling.
+    validations:
+      required: true
+
+  - type: textarea
+    id: raw_text
+    attributes:
+      label: Raw Text / URL (Defanged)
+      description: Paste the text of the message here so it is searchable. PLEASE DEFANG LINKS.
+      placeholder: |
+        "CA Toll Services: You have an outstanding balance. Visit hxxps://fake-toll-site[.]com to avoid fees."
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag and drop your REDACTED screenshots here.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Safety Certification
+      options:
+        - label: I have redacted/blacked out all personal phone numbers and names from the images and text.
+          required: true
+        - label: I have defanged the malicious links (e.g., hxxps://...).
+          required: true
